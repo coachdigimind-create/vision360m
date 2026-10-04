@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vision360M | विझन ३६० एम - महाराष्ट्रातील ताज्या, खात्रीलायक आणि वेगवान बातम्या. Marathi News Portal for Maharashtra, National, Sports and Entertainment.">
+    <meta name="keywords" content="Marathi News, Vision360M, Maharashtra News, Live Updates, ताज्या बातम्या, मराठी बातम्या, विझन ३६०">
+    <meta name="author" content="Vision360M News Network">
+    <meta property="og:title" content="Vision360M | विझन ३६० एम - ताज्या बातम्या">
+    <meta property="og:description" content="महाराष्ट्रातील ताज्या आणि खात्रीलायक बातम्यांसाठी Vision360M शी जोडलेले राहा.">
+    <meta property="og:type" content="website">
+    
+    <title>Vision360M | विझन ३६० एम - ताज्या आणि खात्रीलायक बातम्या</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Mukta', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            red: '#dc2626',
+                            dark: '#0f172a',
+                            light: '#f8fafc',
+                        }
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'fade-in': 'fadeIn 0.3s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Mukta', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .ticker-wrap {
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+        .ticker-content {
+            display: inline-block;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #dc2626;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Top Bar (Date & Socials) -->
+    <div class="bg-brand-dark text-slate-300 py-1 text-sm border-b border-slate-700">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div id="current-date" class="font-medium">
+                <i class="ph ph-calendar-blank mr-1 align-middle"></i> लोडिंग...
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-white transition"><i class="ph ph-facebook-logo text-lg"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="ph ph-twitter-logo text-lg"></i></a>
+                <a href="https://youtube.com/@vzn360m" target="_blank" class="text-red-500 hover:text-white transition"><i class="ph ph-youtube-logo text-lg"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="ph ph-instagram-logo text-lg"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex flex-col" onclick="showMainContent()">
+                <span class="text-3xl font-extrabold tracking-tight text-brand-dark">
+                    Vision<span class="text-brand-red">360M</span>
+                </span>
+                <span class="text-sm font-semibold text-gray-500 -mt-1 tracking-wider">विझन ३६० एम</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex space-x-6 items-center font-semibold text-base xl:text-lg">
+                <a href="#" class="text-brand-red border-b-2 border-brand-red pb-1" onclick="showMainContent()">मुख्यपृष्ठ</a>
+                <a href="#" class="text-slate-700 hover:text-brand-red transition pb-1">महाराष्ट्र</a>
+                <a href="#" class="text-slate-700 hover:text-brand-red transition pb-1">राष्ट्रीय</a>
+                <a href="#ad-section" class="text-slate-700 hover:text-brand-red transition pb-1 font-bold text-blue-600"><i class="ph ph-megaphone text-lg align-middle"></i> जाहिरात द्या</a>
+                <a href="#join-us" class="bg-brand-red text-white px-4 py-1 rounded-full hover:bg-red-700 transition shadow-md animate-pulse flex items-center gap-1">
+                    <i class="ph ph-microphone-stage"></i> पत्रकार व्हा
+                </a>
+                <button onclick="openTrainingLogin()" class="bg-slate-800 text-white px-4 py-1 rounded-full hover:bg-slate-700 transition shadow-md flex items-center gap-1 border border-slate-600">
+                    <i class="ph ph-graduation-cap"></i> ट्रेनिंग
+                </button>
+            </nav>
+
+            <!-- Search & Mobile Toggle -->
+            <div class="flex items-center space-x-3">
+                <button class="text-slate-700 hover:text-brand-red transition">
+                    <i class="ph ph-magnifying-glass text-2xl"></i>
+                </button>
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-700">
+                    <i class="ph ph-list text-3xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav (Hidden by default) -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-200 px-4 py-2 shadow-inner">
+            <a href="#" class="block py-2 text-brand-red font-semibold border-b border-slate-100" onclick="showMainContent()">
